@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đào Danh Khánh - Portfolio học tập</title>
+    <!-- Font chữ thanh lịch và hiện đại -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark-ink: #1e2022;     /* Màu xám mực tàu đậm */
+            --primary-gray: #2d3033;    /* Màu xám than */
+            --stone-gray: #686d76;      /* Màu xám đá trung tính */
+            --light-gray: #f5f6f7;      /* Màu xám trắng thanh nhã */
+            --accent-red: #b91c1c;      /* Đỏ son Trung Hoa (Tô điểm chính) */
+            --accent-gold: #d97706;     /* Vàng kim cổ điển (Tô điểm phụ) */
+            --text-dark: #1f2937;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--light-gray);
+            line-height: 1.6;
+        }
+
+        /* Header phong cách thủy mặc tối giản */
+        header {
+            background: linear-gradient(135deg, var(--bg-dark-ink) 0%, #3a3f44 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            border-bottom: 4px solid var(--accent-red);
+            overflow: hidden;
+        }
+
+        /* Họa tiết dấu ấn thư pháp đỏ góc header */
+        header::after {
+            content: "漢語";
+            font-family: 'Noto Serif TC', serif;
+            position: absolute;
+            right: 5%;
+            bottom: -10px;
+            font-size: 8rem;
+            color: rgba(185, 28, 28, 0.08); /* Đỏ son mờ */
+            font-weight: 700;
+            pointer-events: none;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+        }
+
+        @media (max-width: 850px) {
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* Thẻ thông tin sinh viên phong cách xám tối giản */
+        .sidebar {
+            background: var(--card-bg);
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+            border-top: 5px solid var(--stone-gray);
+        }
+
+        .sidebar h3 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.4rem;
+            color: var(--primary-gray);
+            margin-bottom: 1.8rem;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Điểm xuyết dấu chấm đỏ son trước tiêu đề */
+        .sidebar h3::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-red);
+            border-radius: 50%;
+        }
+
+        .info-group {
+            margin-bottom: 1.4rem;
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--stone-gray);
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .info-value {
+            font-size: 1.05rem;
+            color: var(--primary-gray);
+            font-weight: 500;
+        }
+
+        .info-value a {
+            color: var(--accent-red);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-red);
+        }
+
+        .info-value a:hover {
+            color: var(--accent-gold);
+            border-bottom-color: var(--accent-gold);
+        }
+
+        /* Khu vực hiển thị danh sách bài tập */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .section-title {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.8rem;
+            color: var(--primary-gray);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            position: relative;
+        }
+
+        /* Thẻ bài tập phong cách thanh nhã */
+        .assignment-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.03);
+            border-left: 4px solid var(--stone-gray);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .assignment-card:hover {
+            transform: translateY(-4px);
+            border-left-color: var(--accent-red); /* Đổi sang đỏ son khi di chuột vào */
+            box-shadow: 0 15px 30px -5px rgba(185, 28, 28, 0.08);
+        }
+
+        /* Nhãn bài tập với màu sắc tương phản nổi bật */
+        .assignment-tag {
+            display: inline-block;
+            background-color: #fef2f2; /* Màu nền hồng đỏ rất nhẹ */
+            color: var(--accent-red);   /* Chữ đỏ nổi bật */
+            padding: 0.3rem 0.9rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: 1px solid rgba(185, 28, 28, 0.15);
+        }
+
+        .assignment-title {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.35rem;
+            color: var(--primary-gray);
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+
+        .assignment-desc {
+            color: #4b5563;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Nút xem bài tập màu xám đen, hover đổi sang đỏ son rực rỡ */
+        .btn-view {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--primary-gray);
+            color: white;
+            padding: 0.7rem 1.4rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            letter-spacing: 0.02em;
+        }
+
+        .btn-view:hover {
+            background-color: var(--accent-red);
+            box-shadow: 0 4px 12px rgba(185, 28, 28, 0.25);
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 1.5rem;
+            margin-top: 5rem;
+            border-top: 1px solid #e5e7eb;
+            font-size: 0.9rem;
+            color: var(--stone-gray);
+            background-color: #eaebeb;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Đào Danh Khánh</h1>
+        <p>Học phần: Nhập môn Công nghệ số và Ứng dụng trí tuệ nhân tạo (VNU1001)</p>
+    </header>
+
+    <div class="container">
+        <div class="grid">
+            <!-- Cột trái: Thông tin cá nhân -->
+            <aside class="sidebar">
+                <h3>个人资料</h3> <!-- Chữ Hán: Sơ lược thông tin cá nhân -->
+                
+                <div class="info-group">
+                    <div class="info-label">Họ và tên</div>
+                    <div class="info-value">Đào Danh Khánh</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">Mã số sinh viên</div>
+                    <div class="info-value" style="font-family: monospace; letter-spacing: 0.05em;">25041666</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">Ngành học</div>
+                    <div class="info-value">Ngôn ngữ Trung Quốc</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">Khoa</div>
+                    <div class="info-value">Khoa Ngôn ngữ và Văn hóa Trung Quốc</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">Trường</div>
+                    <div class="info-value">Trường Đại học Ngoại ngữ - ĐHQGHN</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">Mã lớp học phần</div>
+                    <div class="info-value">VNU1001_E252057</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">Email liên hệ</div>
+                    <div class="info-value">
+                        <a href="mailto:dahkhash1510@gmail.com">dahkhash1510@gmail.com</a>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Cột phải: Danh sách bài tập -->
+            <main class="main-content">
+                <h2 class="section-title">Danh sách bài tập thực hành</h2>
+
+                <!-- BÀI TẬP 1 -->
+                <div class="assignment-card">
+                    <span class="assignment-tag">Bài tập 1</span>
+                    <h3 class="assignment-title">Đánh giá & Tìm kiếm tài liệu học tập</h3>
+                    <p class="assignment-desc">Sử dụng Google Scholar để tìm kiếm và lập danh sách 10 nguồn tài liệu tham khảo chuẩn Harvard về chuyên ngành Ngôn ngữ Trung Quốc.</p>
+                    <!-- Link liên kết bài tập của bạn (Nhớ thay link của bạn vào đây) -->
+                    <a href="https://github.com/" target="_blank" class="btn-view">Xem chi tiết bài nộp</a>
+                </div>
+
+                <!-- BÀI TẬP 2 -->
+                <div class="assignment-card">
+                    <span class="assignment-tag">Bài tập 2</span>
+                    <h3 class="assignment-title">Ứng dụng AI trong dịch thuật thuật ngữ</h3>
+                    <p class="assignment-desc">Báo cáo khảo sát và đánh giá năng lực của ChatGPT/Gemini trong việc dịch thuật các thuật ngữ văn hóa Trung Quốc cổ đại.</p>
+                    <!-- Link liên kết bài tập của bạn (Nhớ thay link của bạn vào đây) -->
+                    <a href="https://github.com/" target="_blank" class="btn-view">Xem chi tiết bài nộp</a>
+                </div>
+
+                <!-- BÀI TẬP 3 -->
+                <div class="assignment-card">
+                    <span class="assignment-tag">Bài tập 3</span>
+                    <h3 class="assignment-title">Báo cáo sản phẩm công nghệ cuối kỳ</h3>
+                    <p class="assignment-desc">Xây dựng ứng dụng/sản phẩm thực hành ứng dụng Trí tuệ nhân tạo phục vụ cho việc học từ vựng tiếng Trung.</p>
+                    <!-- Link liên kết bài tập của bạn (Nhớ thay link của bạn vào đây) -->
+                    <a href="https://github.com/" target="_blank" class="btn-view">Xem chi tiết bài nộp</a>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Đào Danh Khánh | ULIS - ĐHQGHN</p>
+    </footer>
+
+</body>
+</html>
